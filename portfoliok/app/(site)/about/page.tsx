@@ -4,6 +4,8 @@ import { getProfile } from "@/sanity/sanity.query";
 import type { ProfileType } from "@/types";
 import { PortableText } from "@portabletext/react";
 import { BiEnvelope, BiFile } from "react-icons/bi";
+import logo from "../icons/logo.png"
+import HeroSvg from "../icons/HeroSvg";
 
 export default async function About() {
   const profile: ProfileType[] = await getProfile();
@@ -29,13 +31,12 @@ export default async function About() {
                 <div>
                   <Image
                     className="rounded-2xl mb-4 object-cover max-h-96 min-h-96 bg-top bg-[#1d1d20]"
-                    src={data.profileImage.image}
+                    src={data.profileImage?.image || logo}
                     width={400}
                     height={400}
                     quality={100}
-                    alt={data.profileImage.alt}
+                    alt={data.profileImage?.alt || 'Profile Image'}
                   />
-
                   <a
                     href={`${data.resumeURL}?dl=${data.fullName}_resume`}
                     className="flex items-center justify-center gap-x-2 bg-[#1d1d20] border border-transparent hover:border-zinc-700 rounded-md duration-200 py-2 text-center cursor-cell font-medium"

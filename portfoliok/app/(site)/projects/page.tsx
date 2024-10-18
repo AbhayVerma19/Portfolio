@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { getProjects } from "@/sanity/sanity.query";
 import type { ProjectType } from "@/types";
+import logo from "../icons/logo.png"
 
 export default async function Project() {
   const projects: ProjectType[] = await getProjects();
@@ -29,10 +30,10 @@ export default async function Project() {
             className="flex items-center gap-x-4 bg-[#1d1d20] border border-transparent hover:border-zinc-700 p-4 rounded-lg ease-in-out"
           >
             <Image
-              src={project.logo}
+              src={project?.logo || logo}
               width={60}
               height={60}
-              alt={project.name}
+              alt={project?.name || 'hello'}
               className="bg-zinc-800 rounded-md p-2"
             />
             <div>
