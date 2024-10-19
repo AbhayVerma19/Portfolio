@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { getJob } from "@/sanity/sanity.query";
 import type { JobType } from "@/types";
+import logo from "../icons/logo.png"
 
 export default async function Job() {
   const job: JobType[] = await getJob();
@@ -23,9 +24,9 @@ export default async function Job() {
               className="min-h-[60px] min-w-[60px] rounded-md overflow-clip relative"
             >
               <Image
-                src={data.logo}
+                src={data?.logo || logo}
                 className="object-cover"
-                alt={`${data.name} logo`}
+                alt={`${data?.name || 'Logo'} logo`}
                 fill
               />
             </a>
@@ -33,7 +34,7 @@ export default async function Job() {
               <h3 className="text-xl font-bold">{data.name}</h3>
               <p>{data.jobTitle}</p>
               <small className="text-sm text-zinc-500 mt-2 tracking-widest uppercase">
-                {data.startDate.toString()} - {data.endDate.toString()}
+                {data.startDate?.toString() || 'N/A'} - {data.endDate?.toString() || 'Present'}
               </small>
               <p className="text-base text-zinc-400 my-4">{data.description}</p>
             </div>
